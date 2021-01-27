@@ -1,6 +1,6 @@
 let checkResponse = function(response) {
    let message = response.rcrm.RC;
-   let status = message === 'CO1';
+   let status = message === 'C01';
    let statusCode = 200;
    if (status) {
       statusCode = 200;
