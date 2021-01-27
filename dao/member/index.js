@@ -2,6 +2,21 @@ const mmrmAxios = require('../../utility/axios/mmrm.js');
 const cryptoObj = require('../../utility/crypto/mmrm.js');
 const access_token = process.env.MMRM_ACCESS_TOKEN
 const memberDao = {
+   login(payload) {
+      let signText = cryptoObj.wm_sign({
+         request_parameter: { ...payload },
+         timestamp: '2019/01/01 10:00:05'
+      });
+      return mmrmAxios({
+         url: '/member/login',
+         method: 'post',
+         data: { sign: signText }
+      }).then(res => {
+         return res.data;
+      }).catch(err => {
+         console.log(err);
+      });
+   },
    memberSummary() {
       let signText = cryptoObj.wm_sign({
          "member_access_token": access_token,
