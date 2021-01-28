@@ -16,7 +16,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(cors({
    origin: 'http://localhost:8080',
-   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
    credentials: true
 }));
 app.listen(port);

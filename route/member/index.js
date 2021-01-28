@@ -1,8 +1,8 @@
-const cookieParser = require('cookie-parser');
 const express = require('express');
 const router = express.Router();
 const memberDao = require('../../dao/member/index.js');
-const checkResponse  = require('../../utility/checkResponse/index.js')
+const checkResponse  = require('../../utility/checkResponse/index.js');
+const { checkHasToken } = require('../../middleware/index.js');
 
 router.post('/login', async (req, res) => {
    let response = await memberDao.login(req.body);
@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
    });
 });
 
-router.post('/logout', async (req, res) => {
+router.post('/logout', checkHasToken, async (req, res) => {
    let token = req.signedCookies.mmrmToken;
    let response = await memberDao.logout(token);
    let { status, statusCode } = checkResponse(response);
