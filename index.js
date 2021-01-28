@@ -12,9 +12,13 @@ const member = require('./route/member/index.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use(cors());
+app.use(cors({
+   origin: 'http://localhost:8080',
+   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+   credentials: true
+}));
 app.listen(port);
 
 app.use('/member', member);
