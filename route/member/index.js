@@ -21,4 +21,15 @@ router.post('/login', async (req, res) => {
    });
 });
 
+router.post('/logout', async (req, res) => {
+   let token = req.signedCookies.mmrmToken;
+   let response = await memberDao.logout(token);
+   let { status, statusCode } = checkResponse(response);
+   res.clearCookie('mmrmToken');
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
 module.exports = router;

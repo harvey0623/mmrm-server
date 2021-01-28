@@ -17,6 +17,22 @@ const memberDao = {
          console.log(err);
       });
    },
+   logout(token) {
+      let signText = cryptoObj.wm_sign({
+         member_access_token: token,
+         request_parameter: {},
+         timestamp: "2019/01/01 10:00:05"
+      });
+      return mmrmAxios({
+         url: '/member/logout',
+         method: 'post',
+         data: { sign: signText }
+      }).then(res => {
+         return res.data;
+      }).catch(err => {
+         console.log(err);
+      });
+   },
    memberSummary() {
       let signText = cryptoObj.wm_sign({
          "member_access_token": access_token,
