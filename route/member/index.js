@@ -32,4 +32,23 @@ router.post('/logout', checkHasToken, async (req, res) => {
    });
 });
 
+router.post('/register_check', async (req, res) => { //註冊第一步驟
+   let response = await memberDao.register_check(req.body);
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
+router.post('/register', async (req, res) => { //註冊第二步驟
+   let response = await memberDao.register(req.body);
+   console.log(response);
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
 module.exports = router;
