@@ -9,6 +9,7 @@ const dotenv = require('dotenv').config({
    path: '.env.dev'
 });
 const member = require('./route/member/index.js');
+const term = require('./route/term/index.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -22,6 +23,7 @@ app.use(cors({
 app.listen(port);
 
 app.use('/member', member);
+app.use('/term', term);
 
 app.use((req, res) => {
    res.write('<h1>Hello mmrm server ~</h1>');

@@ -1,10 +1,10 @@
-const mmrmAxios = require('../../../utility/axios/mmrm.js');
-const wmSign = require('../../../utility/crypto/mmrm.js');
+const mmrmAxios = require('../../utility/axios/mmrm.js');
+const cryptoObj = require('../../utility/crypto/mmrm.js');
 const termDao = {
    async term(payload) {
-      let signText = wmSign({
-         "request_parameter": { ...payload },
-         "timestamp": "2019/01/01 10:00:05"
+      let signText = cryptoObj.wm_sign({
+         'request_parameter': { ...payload },
+         'timestamp': '2019/01/01 10:00:05'
       });
       return await mmrmAxios({
          url: '/term/brief_term',
