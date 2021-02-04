@@ -43,7 +43,15 @@ router.post('/register_check', async (req, res) => { //註冊第一步驟
 
 router.post('/register', async (req, res) => { //註冊第二步驟
    let response = await memberDao.register(req.body);
-   console.log(response);
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
+router.post('/register_verify', async (req, res) => { //註冊第三步驟
+   let response = await memberDao.register_verify(req.body);
    let { status, statusCode } = checkResponse(response);
    res.status(statusCode).json({
       status,

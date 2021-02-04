@@ -67,6 +67,24 @@ const memberDao = {
          console.log(err);
       });
    },
+   register_verify(payload) {
+      let signText = cryptoObj.wm_sign({
+         temp_access_token: payload.temp_access_token,
+         request_parameter: {
+            verify_code: payload.verify_code
+         },
+         timestamp: "2019/01/01 10:00:05"
+      });
+      return mmrmAxios({
+         url: '/member/register_verify',
+         method: 'post',
+         data: { sign: signText }
+      }).then(res => {
+         return res.data;
+      }).catch(err => {
+         console.log(err);
+      });
+   },
    memberSummary() {
       let signText = cryptoObj.wm_sign({
          "member_access_token": access_token,
