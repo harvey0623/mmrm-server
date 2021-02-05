@@ -85,6 +85,21 @@ const memberDao = {
          console.log(err);
       });
    },
+   forget_password(payload) {
+      let signText = cryptoObj.wm_sign({
+         request_parameter: { ...payload },
+         timestamp: "2019/01/01 10:00:05"
+      });
+      return mmrmAxios({
+         url: '/member/v1.1/forget_password',
+         method: 'post',
+         data: { sign: signText }
+      }).then(res => {
+         return res.data;
+      }).catch(err => {
+         console.log(err);
+      });
+   },
    memberSummary() {
       let signText = cryptoObj.wm_sign({
          "member_access_token": access_token,

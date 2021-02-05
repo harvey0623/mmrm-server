@@ -59,4 +59,13 @@ router.post('/register_verify', async (req, res) => { //註冊第三步驟
    });
 });
 
+router.post('/v1.1/forget_password', async (req, res) => { //忘記密碼第一步
+   let response = await memberDao.forget_password(req.body);
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
 module.exports = router;
