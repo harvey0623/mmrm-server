@@ -59,8 +59,26 @@ router.post('/register_verify', async (req, res) => { //註冊第三步驟
    });
 });
 
-router.post('/v1.1/forget_password', async (req, res) => { //忘記密碼第一步
+router.post('/v1.1/forget_password', async (req, res) => { //忘記密碼第
    let response = await memberDao.forget_password(req.body);
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
+router.post('/forget_password_verify', async (req, res) => { //忘記密碼-手機驗證
+   let response = await memberDao.forget_password_verify(req.body);
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
+router.post('/reset_password', async (req, res) => { //重設密碼
+   let response = await memberDao.reset_password(req.body);
    let { status, statusCode } = checkResponse(response);
    res.status(statusCode).json({
       status,

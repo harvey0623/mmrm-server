@@ -100,6 +100,42 @@ const memberDao = {
          console.log(err);
       });
    },
+   forget_password_verify(payload) {
+      let signText = cryptoObj.wm_sign({
+         temp_access_token: payload.temp_access_token,
+         request_parameter: { 
+            verify_code: payload.verify_code
+         },
+         timestamp: "2019/01/01 10:00:05"
+      });
+      return mmrmAxios({
+         url: '/member/forget_password_verify',
+         method: 'post',
+         data: { sign: signText }
+      }).then(res => {
+         return res.data;
+      }).catch(err => {
+         console.log(err);
+      });
+   },
+   reset_password(payload) {
+      let signText = cryptoObj.wm_sign({
+         temp_access_token: payload.temp_access_token,
+         request_parameter: { 
+            new_password: payload.new_password
+         },
+         timestamp: "2019/01/01 10:00:05"
+      });
+      return mmrmAxios({
+         url: '/member/reset_password',
+         method: 'post',
+         data: { sign: signText }
+      }).then(res => {
+         return res.data;
+      }).catch(err => {
+         console.log(err);
+      });
+   },
    memberSummary() {
       let signText = cryptoObj.wm_sign({
          "member_access_token": access_token,
