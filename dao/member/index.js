@@ -21,7 +21,7 @@ const memberDao = {
       let signText = cryptoObj.wm_sign({
          member_access_token: token,
          request_parameter: {},
-         timestamp: "2019/01/01 10:00:05"
+         timestamp: '2019/01/01 10:00:05'
       });
       return mmrmAxios({
          url: '/member/logout',
@@ -38,7 +38,7 @@ const memberDao = {
          request_parameter: {
             register_check: { ...payload }
          },
-         timestamp: "2019/01/01 10:00:05"
+         timestamp: '2019/01/01 10:00:05'
       });
       return mmrmAxios({
          url: '/member/register_check',
@@ -55,7 +55,7 @@ const memberDao = {
          request_parameter: {
             register: { ...payload }
          },
-         timestamp: "2019/01/01 10:00:05"
+         timestamp: '2019/01/01 10:00:05'
       });
       return mmrmAxios({
          url: '/member/register',
@@ -73,7 +73,7 @@ const memberDao = {
          request_parameter: {
             verify_code: payload.verify_code
          },
-         timestamp: "2019/01/01 10:00:05"
+         timestamp: '2019/01/01 10:00:05'
       });
       return mmrmAxios({
          url: '/member/register_verify',
@@ -88,7 +88,7 @@ const memberDao = {
    forget_password(payload) {
       let signText = cryptoObj.wm_sign({
          request_parameter: { ...payload },
-         timestamp: "2019/01/01 10:00:05"
+         timestamp: '2019/01/01 10:00:05'
       });
       return mmrmAxios({
          url: '/member/v1.1/forget_password',
@@ -106,7 +106,7 @@ const memberDao = {
          request_parameter: { 
             verify_code: payload.verify_code
          },
-         timestamp: "2019/01/01 10:00:05"
+         timestamp: '2019/01/01 10:00:05'
       });
       return mmrmAxios({
          url: '/member/forget_password_verify',
@@ -124,10 +124,44 @@ const memberDao = {
          request_parameter: { 
             new_password: payload.new_password
          },
-         timestamp: "2019/01/01 10:00:05"
+         timestamp: '2019/01/01 10:00:05'
       });
       return mmrmAxios({
          url: '/member/reset_password',
+         method: 'post',
+         data: { sign: signText }
+      }).then(res => {
+         return res.data;
+      }).catch(err => {
+         console.log(err);
+      });
+   },
+   verify_member_password(payload) {
+      let signText = cryptoObj.wm_sign({
+         member_access_token: payload.token,
+         request_parameter: { 
+            password: payload.password
+         },
+         timestamp: '2019/01/01 10:00:05'
+      });
+      return mmrmAxios({
+         url: '/member/verify_member_password',
+         method: 'post',
+         data: { sign: signText }
+      }).then(res => {
+         return res.data;
+      }).catch(err => {
+         console.log(err);
+      });
+   },
+   get_member_profile(token) {
+      let signText = cryptoObj.wm_sign({
+         member_access_token: token,
+         request_parameter: {},
+         timestamp: "2019/01/01 10:00:05"
+      });
+      return mmrmAxios({
+         url: '/member/get_member_profile',
          method: 'post',
          data: { sign: signText }
       }).then(res => {
@@ -152,22 +186,6 @@ const memberDao = {
          console.log(err);
       });
    },
-   memberProfile() {
-      let signText = cryptoObj.wm_sign({
-         "member_access_token": access_token,
-         "request_parameter": {},
-         "timestamp": "2019/01/01 10:00:05"
-      });
-      return mmrmAxios({
-         url: '/member/get_member_profile',
-         method: 'post',
-         data: { sign: signText }
-      }).then(res => {
-         return res.data;
-      }).catch(err => {
-         console.log(err);
-      });
-   },
    memberCard() {
       let signText = cryptoObj.wm_sign({
          "member_access_token": access_token,
@@ -176,22 +194,6 @@ const memberDao = {
       });
       return mmrmAxios({
          url: '/member/get_member_card',
-         method: 'post',
-         data: { sign: signText }
-      }).then(res => {
-         return res.data;
-      }).catch(err => {
-         console.log(err);
-      });
-   },
-   verifyPassword(payload) {
-      let signText = cryptoObj.wm_sign({
-         "member_access_token": access_token,
-         "request_parameter": { ...payload },
-         "timestamp": "2019/01/01 10:00:05"
-      });
-      return mmrmAxios({
-         url: '/member/verify_member_password',
          method: 'post',
          data: { sign: signText }
       }).then(res => {

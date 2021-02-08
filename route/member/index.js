@@ -86,4 +86,27 @@ router.post('/reset_password', async (req, res) => { //重設密碼
    });
 });
 
+router.post('/verify_member_password', checkHasToken, async (req, res) => { //驗正密碼
+   let token = req.signedCookies.mmrmToken;
+   let response = await memberDao.verify_member_password({
+      token,
+      password: req.body.password
+   });
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
+router.post('/get_member_profile', checkHasToken, async (req, res) => { //取得會員資料
+   let token = req.signedCookies.mmrmToken;
+   let response = await memberDao.get_member_profile(token)
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
 module.exports = router;
