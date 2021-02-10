@@ -170,6 +170,24 @@ const memberDao = {
          console.log(err);
       });
    },
+   update_member_profile(payload) {
+      let signText = cryptoObj.wm_sign({
+         member_access_token: payload.token,
+         request_parameter: {
+            member_profile: payload.member_profile
+         },
+         timestamp: '2019/01/01 10:00:05'
+      });
+      return mmrmAxios({
+         url: '/member/update_member_profile',
+         method: 'post',
+         data: { sign: signText }
+      }).then(res => {
+         return res.data;
+      }).catch(err => {
+         console.log(err);
+      });
+   },
    memberSummary() {
       let signText = cryptoObj.wm_sign({
          "member_access_token": access_token,

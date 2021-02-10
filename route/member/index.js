@@ -109,4 +109,16 @@ router.post('/get_member_profile', checkHasToken, async (req, res) => { //取得
    });
 });
 
+router.post('/update_member_profile', checkHasToken, async (req, res) => { //更新會員資料
+   let response = await memberDao.update_member_profile({ 
+      token: req.signedCookies.mmrmToken,
+      member_profile: req.body
+   });
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
 module.exports = router;
