@@ -121,4 +121,41 @@ router.post('/update_member_profile', checkHasToken, async (req, res) => { //更
    });
 });
 
+router.post('/update_member_mobile', checkHasToken, async (req, res) => { //更新會員手機
+   let response = await memberDao.update_member_mobile({ 
+      token: req.signedCookies.mmrmToken,
+      mobile: req.body.mobile,
+      password: req.body.password
+   });
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
+router.post('/member_verify', checkHasToken, async (req, res) => { //會員認證(修改手機號碼用)
+   let response = await memberDao.member_verify({ 
+      token: req.signedCookies.mmrmToken,
+      verify_code: req.body.verify_code,
+   });
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
+router.post('/update_member_password', checkHasToken, async (req, res) => { //更新密碼
+   let response = await memberDao.update_member_password({ 
+      token: req.signedCookies.mmrmToken,
+      ...req.body
+   });
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
 module.exports = router;

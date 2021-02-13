@@ -188,14 +188,17 @@ const memberDao = {
          console.log(err);
       });
    },
-   memberSummary() {
+   update_member_mobile(payload) {
       let signText = cryptoObj.wm_sign({
-         "member_access_token": access_token,
-         "request_parameter": {},
-         "timestamp": "2019/01/01 10:00:05"
+         member_access_token: payload.token,
+         request_parameter: {
+            mobile: payload.mobile,
+            password: payload.password
+         },
+         timestamp: '2019/01/01 10:00:05'
       });
       return mmrmAxios({
-         url: '/member/member_summary',
+         url: '/member/update_member_mobile',
          method: 'post',
          data: { sign: signText }
       }).then(res => {
@@ -204,14 +207,16 @@ const memberDao = {
          console.log(err);
       });
    },
-   memberCard() {
+   member_verify(payload) {
       let signText = cryptoObj.wm_sign({
-         "member_access_token": access_token,
-         "request_parameter": {},
-         "timestamp": "2019/01/01 10:00:05"
+         member_access_token: payload.token,
+         request_parameter: {
+            verify_code: payload.verify_code,
+         },
+         timestamp: '2019/01/01 10:00:05'
       });
       return mmrmAxios({
-         url: '/member/get_member_card',
+         url: '/member/member_verify',
          method: 'post',
          data: { sign: signText }
       }).then(res => {
@@ -219,7 +224,26 @@ const memberDao = {
       }).catch(err => {
          console.log(err);
       });
-   }
+   },
+   update_member_password(payload) {
+      let signText = cryptoObj.wm_sign({
+         member_access_token: payload.token,
+         request_parameter: {
+            old_password: payload.old_password,
+            new_password: payload.new_password
+         },
+         timestamp: '2019/01/01 10:00:05'
+      });
+      return mmrmAxios({
+         url: '/member/update_member_password',
+         method: 'post',
+         data: { sign: signText }
+      }).then(res => {
+         return res.data;
+      }).catch(err => {
+         console.log(err);
+      });
+   },
 }
 
 module.exports = memberDao;
