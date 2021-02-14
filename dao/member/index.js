@@ -1,6 +1,5 @@
 const mmrmAxios = require('../../utility/axios/mmrm.js');
 const cryptoObj = require('../../utility/crypto/mmrm.js');
-const access_token = process.env.MMRM_ACCESS_TOKEN
 const memberDao = {
    login(payload) {
       let signText = cryptoObj.wm_sign({
