@@ -158,4 +158,14 @@ router.post('/update_member_password', checkHasToken, async (req, res) => { //�
    });
 });
 
+router.post('/member_summary', checkHasToken, async (req, res) => { //會員快取資料
+   let token = req.signedCookies.mmrmToken;
+   let response = await memberDao.member_summary(token);
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
 module.exports = router;

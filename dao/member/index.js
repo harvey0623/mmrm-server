@@ -243,6 +243,22 @@ const memberDao = {
          console.log(err);
       });
    },
+   member_summary(token) {
+      let signText = cryptoObj.wm_sign({
+         member_access_token: token,
+         request_parameter: {},
+         timestamp: '2019/01/01 10:00:05'
+      });
+      return mmrmAxios({
+         url: '/member/member_summary',
+         method: 'post',
+         data: { sign: signText }
+      }).then(res => {
+         return res.data;
+      }).catch(err => {
+         console.log(err);
+      });
+   },
 }
 
 module.exports = memberDao;
