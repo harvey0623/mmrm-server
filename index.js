@@ -10,6 +10,7 @@ const dotenv = require('dotenv').config({
 });
 const member = require('./route/member/index.js');
 const term = require('./route/term/index.js');
+const transaction = require('./route/transaction/index.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,6 +25,7 @@ app.listen(port);
 
 app.use('/member', member);
 app.use('/term', term);
+app.use('/transaction', transaction);
 
 app.use((req, res) => {
    res.write('<h1>Hello mmrm server ~</h1>');

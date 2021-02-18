@@ -1,13 +1,15 @@
-const mmrmAxios = require('../../../utility/axios/mmrm.js');
-const wmSign = require('../../../utility/crypto/mmrm.js');
-const isDev = process.env.NODE_ENV === 'dev';
-const access_token = isDev ? process.env.MMRM_ACCESS_TOKEN : process.env.CUSTOM_ACCESS_TOKEN;
+const mmrmAxios = require('../../utility/axios/mmrm.js');
+const cryptoObj = require('../../utility/crypto/mmrm.js');
 const transactionDao = {
-   async getHistory(payload) {
-      let signText = wmSign({
-         "member_access_token": access_token,
-         "request_parameter": { ...payload },
-         "timestamp": "2019/01/01 10:00:05"
+   async transaction_history(payload) {
+      let signText = cryptoObj.wm_sign({
+         member_access_token: payload.token,
+         request_parameter: { 
+            query_start_datetime: payload.query_start_datetime,
+            query_end_datetime: payload.query_end_datetime,
+            offset: payload.offset
+         },
+         timestamp: '2019/01/01 10:00:05'
       });
       return await mmrmAxios({
          url: '/transaction/transaction_history',
@@ -19,11 +21,13 @@ const transactionDao = {
          console.log(err);
       });
    },
-   async getDetail(payload) {
-      let signText = wmSign({
-         "member_access_token": access_token,
-         "request_parameter": { ...payload },
-         "timestamp": "2019/01/01 10:00:05"
+   async transaction_detail(payload) {
+      let signText = cryptoObj.wm_sign({
+         member_access_token: payload.token,
+         request_parameter: {
+            transaction_id: payload.transaction_id
+         },
+         timestamp: '2019/01/01 10:00:05'
       });
       return await mmrmAxios({
          url: '/transaction/transaction_detail',
