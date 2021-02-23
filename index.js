@@ -12,6 +12,7 @@ const member = require('./route/member/index.js');
 const term = require('./route/term/index.js');
 const transaction = require('./route/transaction/index.js');
 const brand = require('./route/brand/index.js');
+const point = require('./route/point/index.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,6 +29,7 @@ app.use('/member', member);
 app.use('/term', term);
 app.use('/transaction', transaction);
 app.use('/brand', brand);
+app.use('/point', point);
 
 app.use((req, res) => {
    res.write('<h1>Hello mmrm server ~</h1>');
