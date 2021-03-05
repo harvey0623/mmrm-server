@@ -259,6 +259,22 @@ const memberDao = {
          console.log(err);
       });
    },
+   get_member_card(token) {
+      let signText = cryptoObj.wm_sign({
+         member_access_token: token,
+         request_parameter: {},
+         timestamp: '2019/01/01 10:00:05'
+      });
+      return mmrmAxios({
+         url: '/member/get_member_card',
+         method: 'post',
+         data: { sign: signText }
+      }).then(res => {
+         return res.data;
+      }).catch(err => {
+         console.log(err);
+      });
+   }
 }
 
 module.exports = memberDao;

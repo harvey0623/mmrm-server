@@ -168,4 +168,14 @@ router.post('/member_summary', checkHasToken, async (req, res) => { //會員快�
    });
 });
 
+router.post('/get_member_card', checkHasToken, async (req, res) => { //會員條碼
+   let token = req.signedCookies.mmrmToken;
+   let response = await memberDao.get_member_card(token);
+   let { status, statusCode } = checkResponse(response);
+   res.status(statusCode).json({
+      status,
+      info: response
+   });
+});
+
 module.exports = router;
