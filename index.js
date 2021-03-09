@@ -15,6 +15,7 @@ const brand = require('./route/brand/index.js');
 const point = require('./route/point/index.js');
 const level = require('./route/level/index.js');
 const coupon = require('./route/coupon/index.js');
+const store = require('./route/store/index.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -34,6 +35,7 @@ app.use('/brand', brand);
 app.use('/point', point);
 app.use('/level', level);
 app.use('/coupon', coupon);
+app.use('/store', store);
 
 app.use((req, res) => {
    res.write('<h1>Hello mmrm server ~</h1>');
