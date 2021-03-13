@@ -1,12 +1,10 @@
-const mmrmAxios = require('../../../utility/axios/mmrm.js');
-const wmSign = require('../../../utility/crypto/mmrm.js');
-const isDev = process.env.NODE_ENV === 'dev';
-const access_token = isDev ? process.env.MMRM_ACCESS_TOKEN : process.env.CUSTOM_ACCESS_TOKEN;
+const mmrmAxios = require('../../utility/axios/mmrm.js');
+const cryptoObj = require('../../utility/crypto/mmrm.js');
 const activityDao = {
-   async briefCouponActivity() {
-      let signText = wmSign({
-         "request_parameter": {},
-         "timestamp": "2019/01/01 10:00:05"
+   async briefCoupon() {
+      let signText = cryptoObj.wm_sign({
+         request_parameter: {},
+         timestamp: '2019/01/01 10:00:05'
       });
       return await mmrmAxios({
          url: '/activity/brief_coupon_activity_type',
@@ -18,10 +16,10 @@ const activityDao = {
          console.log(err);
       });
    },
-   async searchCouponActivity(payload) {
-      let signText = wmSign({
-         "request_parameter": { ...payload },
-         "timestamp": "2019/01/01 10:00:05"
+   async searchCoupon(payload) {
+      let signText = cryptoObj.wm_sign({
+         request_parameter: { ...payload },
+         timestamp: '2019/01/01 10:00:05'
       });
       return await mmrmAxios({
          url: '/activity/search_coupon_activity',
@@ -33,8 +31,8 @@ const activityDao = {
          console.log(err);
       });
    },
-   async couponActivityInformation(payload) {
-      let signText = wmSign({
+   async couponActivityInfo(payload) {
+      let signText = cryptoObj.wm_sign({
          "request_parameter": { ...payload },
          "timestamp": "2019/01/01 10:00:05"
       });
@@ -48,11 +46,12 @@ const activityDao = {
          console.log(err);
       });
    },
-   async redeemCouponActivity(payload) {
-      let signText = wmSign({
-         "member_access_token": access_token,
-         "request_parameter": { ...payload },
-         "timestamp": "2019/01/01 10:00:05"
+   async redeemCoupon(payload) {
+      let { token, ...params } = payload;
+      let signText = cryptoObj.wm_sign({
+         member_access_token: token,
+         request_parameter: { ...params },
+         timestamp: '2019/01/01 10:00:05'
       });
       return await mmrmAxios({
          url: '/activity/redeem_coupon_activity',
@@ -63,68 +62,7 @@ const activityDao = {
       }).catch(err => {
          console.log(err);
       });
-   },
-   async briefPointActivity() {
-      let signText = wmSign({
-         "request_parameter": {},
-         "timestamp": "2019/01/01 10:00:05"
-      });
-      return await mmrmAxios({
-         url: '/activity/brief_point_activity_type',
-         method: 'post',
-         data: { sign: signText }
-      }).then(res => {
-         return res.data;
-      }).catch(err => {
-         console.log(err);
-      });
-   },
-   async searchPointActivity(payload) {
-      let signText = wmSign({
-         "request_parameter": { ...payload },
-         "timestamp": "2019/01/01 10:00:05"
-      });
-      return await mmrmAxios({
-         url: '/activity/search_point_activity',
-         method: 'post',
-         data: { sign: signText }
-      }).then(res => {
-         return res.data;
-      }).catch(err => {
-         console.log(err);
-      });
-   },
-   async pointActivityInformation(payload) {
-      let signText = wmSign({
-         "request_parameter": { ...payload },
-         "timestamp": "2019/01/01 10:00:05"
-      });
-      return await mmrmAxios({
-         url: '/activity/point_activity_information',
-         method: 'post',
-         data: { sign: signText }
-      }).then(res => {
-         return res.data;
-      }).catch(err => {
-         console.log(err);
-      });
-   },
-   async redeemPointActivity(payload) {
-      let signText = wmSign({
-         "member_access_token": access_token,
-         "request_parameter": { ...payload },
-         "timestamp": "2019/01/01 10:00:05"
-      });
-      return await mmrmAxios({
-         url: '/activity/redeem_point_activity',
-         method: 'post',
-         data: { sign: signText }
-      }).then(res => {
-         return res.data;
-      }).catch(err => {
-         console.log(err);
-      });
-   },
+   }
 }
 
 module.exports = activityDao;
