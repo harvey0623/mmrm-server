@@ -10,6 +10,7 @@ router.post('/login', async (req, res) => {
    if (status) {
       let limitTime = 3 * 24 * 60 * 60 * 1000;
       res.cookie('mmrmToken', response.results.member_access_token, {
+         domain: process.env.NODE_ENV === 'dev' ? '' : 'https://harvey0623.github.io',
          sameSite: 'Lax',
          expires: new Date(Date.now() + limitTime),
          signed: true
