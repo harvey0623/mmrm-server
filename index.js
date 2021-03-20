@@ -25,7 +25,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 
 const whitelist = [
    'http://localhost:8080', 
-   'https://harvey0623.github.io/', 
+   'https://harvey0623.github.io',
    'https://mmrm-server.herokuapp.com'
 ];
 
