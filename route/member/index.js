@@ -4,16 +4,14 @@ const memberDao = require('../../dao/member/index.js');
 const checkResponse  = require('../../utility/checkResponse/index.js');
 const { checkHasToken } = require('../../middleware/index.js');
 
-console.log(process.env.NODE_ENV )
-
 router.post('/login', async (req, res) => {
    let response = await memberDao.login(req.body);
    let { status, statusCode } = checkResponse(response);
    if (status) {
       let limitTime = 3 * 24 * 60 * 60 * 1000;
       res.cookie('mmrmToken', response.results.member_access_token, {
-         domain: process.env.NODE_ENV === 'dev' ? '' : 'https://harvey0623.github.io/',
-         sameSite: 'Lax',
+         domain: '',
+         sameSite: 'none',
          expires: new Date(Date.now() + limitTime),
          signed: true
       });
