@@ -10,9 +10,7 @@ router.post('/login', async (req, res) => {
    if (status) {
       let limitTime = 3 * 24 * 60 * 60 * 1000;
       res.cookie('mmrmToken', response.results.member_access_token, {
-         sameSite: 'None',
-         secure: true,
-         path: '/',
+         sameSite: 'Lax',
          expires: new Date(Date.now() + limitTime),
          signed: true
       });
