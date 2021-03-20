@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-const whitelist = ['http://localhost:8080', 'https://harvey0623.github.io/']
+const whitelist = ['http://localhost:8080', 'https://harvey0623.github.io/', 'https://mmrm-server.herokuapp.com/']
 const corsOptions = {
    origin(origin, callback) {
       if (whitelist.indexOf(origin) !== -1) {
