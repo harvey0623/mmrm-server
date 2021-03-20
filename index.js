@@ -25,7 +25,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 
 const whitelist = [
    'http://localhost:8080', 
-   'https://harvey0623.github.io/mmrm-vue/dist', 
+   'https://harvey0623.github.io/', 
    'https://mmrm-server.herokuapp.com/'
 ];
 
@@ -34,8 +34,8 @@ const corsOptions = {
       if (whitelist.indexOf(origin) !== -1) {
          callback(null, true)
       } else {
-         // callback(new Error('Not allowed by CORS'))
-         callback(null, true);
+         callback(new Error('Not allowed by CORS'))
+         // callback(null, true);
       }
    },
    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
