@@ -598,7 +598,7 @@ textarea {
 .tabList {
   position: fixed;
   left: 0;
-  top: 0;
+  top: 45px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -631,48 +631,16 @@ textarea {
 
 .serviceItem[data-v-c68a8ea0] {
   width: 25%;
-  padding-top: 80px;
-  margin-bottom: 20px;
-  background-size: 100px 67px;
-  background-repeat: no-repeat;
-  background-position: center center;
+  margin-bottom: 25px;
+  color: var(--variationMain);
+  text-align: center;
 }
-.serviceItem.memberCard[data-v-c68a8ea0] {
-    background-image: url(../img/btn_line_memberservice_membercard_n.578934a8.png);
+.serviceItem > *[data-v-c68a8ea0] {
+    display: block;
 }
-.serviceItem.myCoupon[data-v-c68a8ea0] {
-    background-image: url(../img/btn_line_memberservice_mycoupon_n.3d10d2dc.png);
-}
-.serviceItem.consumeRecord[data-v-c68a8ea0] {
-    background-image: url(../img/btn_line_memberservice_txnhistory_n.c2b11fc4.png);
-}
-.serviceItem.message[data-v-c68a8ea0] {
-    background-image: url(../img/btn_line_memberservice_messageinbox_n.f09332ef.png);
-}
-.serviceItem.maintain[data-v-c68a8ea0] {
-    background-image: url(../img/btn_line_memberservice_memberinfo_n.21487631.png);
-}
-.serviceItem.logout[data-v-c68a8ea0] {
-    background-image: url(../img/btn_line_memberservice_logout_n.259a1266.png);
-}
-.serviceItem.login[data-v-c68a8ea0] {
-    background-image: url(../img/login.2498440b.png);
-    background-size: 45px;
-}
-.serviceItem.news[data-v-c68a8ea0] {
-    background-image: url(../img/btn_line_otherservice_news_n.a82b379d.png);
-}
-.serviceItem.exchangeCoupon[data-v-c68a8ea0] {
-    background-image: url(../img/btn_line_otherservice_couponactivity_n.d3d65dbc.png);
-}
-.serviceItem.exchangePoint[data-v-c68a8ea0] {
-    background-image: url(../img/btn_line_otherservice_pointactivity_n.b1490fa7.png);
-}
-.serviceItem.about[data-v-c68a8ea0] {
-    background-image: url(../img/btn_line_otherservice_service_n.4da2c7d9.png);
-}
-.serviceItem.menu[data-v-c68a8ea0] {
-    background-image: url(../img/btn_line_otherservice_menu_n.ec24d23a.png);
+.serviceItem > i[data-v-c68a8ea0] {
+    font-size: 30px;
+    margin-bottom: 5px;
 }
 
 .entranceBlock[data-v-46cb6d3a] {
@@ -686,7 +654,7 @@ textarea {
     margin-bottom: 0;
 }
 .entranceBlock > h2[data-v-46cb6d3a] {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     text-align: center;
     color: var(--variationMain);
     font-weight: 400;
@@ -1051,13 +1019,13 @@ textarea {
 .summaryList > li.total {
     color: #e60012;
 }
-.tipBox {
-  margin-top: 15px;
-  margin-bottom: 0;
-}
 
 .emptyBlock > .emptyBg[data-v-56064a03] {
   background-image: url(../img/img_member_txnhistory_empty_n@2x.7a5d2829.png);
+}
+.tipBox[data-v-56064a03] {
+  margin-top: 15px;
+  margin-bottom: 0;
 }
 
 .point-content > .point-header.center[data-v-cd9b81e2] {
@@ -1084,7 +1052,7 @@ textarea {
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
+  z-index: 12;
 }
 .pointPopup > .closeIcon[data-v-cd9b81e2] {
     position: absolute;
@@ -1187,7 +1155,7 @@ li > .title[data-v-7c404056] {
 .fixBox[data-v-a6cdc67a] {
   position: fixed;
   left: 0;
-  top: 0;
+  top: 45px;
   width: 100%;
 }
 .pointIntro[data-v-a6cdc67a] {
@@ -2152,7 +2120,7 @@ li > .title[data-v-7c404056] {
 .controlPanel {
   position: fixed;
   left: 0;
-  top: 0;
+  top: 45px;
   width: 100%;
   height: 45px;
   padding: 0 20px;
@@ -2757,6 +2725,28 @@ li > .title[data-v-7c404056] {
 .usedBlock[data-v-081cff6b] {
   background-color: #c9c9c9;
   color: #797979;
+}
+
+.panelLayout[data-v-a3392122] {
+  padding-top: 45px;
+}
+.panelLayout .fixedPanel[data-v-a3392122] {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 45px;
+    padding-left: 15px;
+    background-color: #fff;
+    border-bottom: 1px solid lightgray;
+    z-index: 11;
+}
+.panelLayout .fixedPanel > a[data-v-a3392122] {
+      display: inline-block;
+      height: 100%;
+      font-size: 25px;
+      line-height: 45px;
+      color: var(--variationMain);
 }
 
 #loading {
