@@ -16,7 +16,7 @@ const storeDao = {
          console.log(err);
       });
    },
-   voucherStore(payload) {
+   search_voucher_store(payload) {
       let signText = cryptoObj.wm_sign({
          "request_parameter": { ...payload },
          "timestamp": "2019/01/01 10:00:05"
