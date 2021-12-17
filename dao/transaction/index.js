@@ -11,7 +11,7 @@ const transactionDao = {
          },
          timestamp: '2019/01/01 10:00:05'
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/transaction/transaction_history',
          method: 'post',
          data: { sign: signText }
@@ -29,7 +29,7 @@ const transactionDao = {
          },
          timestamp: '2019/01/01 10:00:05'
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/transaction/transaction_detail',
          method: 'post',
          data: { sign: signText }

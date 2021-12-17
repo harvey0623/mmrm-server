@@ -6,7 +6,7 @@ const termDao = {
          request_parameter: { ...payload },
          timestamp: '2019/01/01 10:00:05'
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/term/brief_term',
          method: 'post',
          data: { sign: signText }

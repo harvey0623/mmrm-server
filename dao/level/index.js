@@ -6,7 +6,7 @@ const levelDao = {
          request_parameter: { ...payload },
          timestamp: '2019/01/01 10:00:05'
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/level/level_information',
          method: 'post',
          data: { sign: signText }

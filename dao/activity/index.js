@@ -6,7 +6,7 @@ const activityDao = {
          request_parameter: {},
          timestamp: '2019/01/01 10:00:05'
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/activity/brief_coupon_activity_type',
          method: 'post',
          data: { sign: signText }
@@ -21,7 +21,7 @@ const activityDao = {
          request_parameter: { ...payload },
          timestamp: '2019/01/01 10:00:05'
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/activity/search_coupon_activity',
          method: 'post',
          data: { sign: signText }
@@ -36,7 +36,7 @@ const activityDao = {
          "request_parameter": { ...payload },
          "timestamp": "2019/01/01 10:00:05"
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/activity/coupon_activity_information',
          method: 'post',
          data: { sign: signText }
@@ -53,7 +53,7 @@ const activityDao = {
          request_parameter: { ...params },
          timestamp: '2019/01/01 10:00:05'
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/activity/redeem_coupon_activity',
          method: 'post',
          data: { sign: signText }

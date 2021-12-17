@@ -5,7 +5,7 @@ const brandDao = {
       let signText = cryptoObj.wm_sign({
          timestamp: '2019/01/01 10:00:05'
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/brand/search_brand',
          method: 'post',
          data: { sign: signText }
@@ -20,7 +20,7 @@ const brandDao = {
          request_parameter: { ...payload },
          timestamp: '2019/01/01 10:00:05'
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/brand/brand_information',
          method: 'post',
          data: { sign: signText }

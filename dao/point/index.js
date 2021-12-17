@@ -12,7 +12,7 @@ const pointDao = {
          },
          timestamp: '2019/01/01 10:00:05'
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/point/point_history',
          method: 'post',
          data: { sign: signText }
@@ -30,7 +30,7 @@ const pointDao = {
          },
          timestamp: '2019/01/01 10:00:05'
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/point/point_due_to_expire',
          method: 'post',
          data: { sign: signText }
@@ -45,7 +45,7 @@ const pointDao = {
          request_parameter: { ...payload },
          timestamp: '2019/01/01 10:00:05'
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/point/point_information',
          method: 'post',
          data: { sign: signText }
@@ -60,7 +60,7 @@ const pointDao = {
          request_parameter: { ...payload },
          timestamp: '2019/01/01 10:00:05'
       });
-      return await mmrmAxios({
+      return mmrmAxios({
          url: '/point/external_point_information',
          method: 'post',
          data: { sign: signText }
